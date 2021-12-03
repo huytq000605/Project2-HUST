@@ -1,5 +1,5 @@
 import express from 'express'
-import mqtt from './mqtt'
+import mqtt from './mqtt.js'
 
 const app = express()
 const port = 3000
