@@ -16,7 +16,7 @@ mqttClient.on('connect', () => {
 })
 
 mqttClient.on('message', (topic, message) => {
-	console.log("Receving messages from topic " + topic)
+	console.log("Receving messages from topic " + topic + message)
 	// Todo: Handle logic here
 })
 

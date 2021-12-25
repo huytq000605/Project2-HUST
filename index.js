@@ -14,17 +14,21 @@ const knex = client({
     user : 'root',
     password : 'secret',
     database : 'project2'
-}
+  }
 })
 
 // Write migration
-console.log(await knex("tanmatmac").select("1+1"))
+// console.log(await knex("data").select(["GPIO", "temperature"]))
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 	res.render('pages/index')
+})
+
+app.get('/polling', (req, res) => {
+  return res.json({test: "abc"})
 })
 
 app.listen(port, () => {
