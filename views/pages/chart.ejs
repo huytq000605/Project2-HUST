@@ -1,7 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-const ctx = document.getElementById('temperature_chart');
-const myChart = new Chart(ctx, {
+const tempearture = document.getElementById('temperature_chart');
+const humidity = document.getElementById('humidity_chart')
+const tempeartureChart = new Chart(tempearture, {
     type: 'line',
     data: {
         labels: Array(60).fill(''),
@@ -9,11 +10,11 @@ const myChart = new Chart(ctx, {
             label: 'Temperature',
             data: Array(60).fill(0).map(() => Math.random() * 60),
             borderColor: [
-                'rgba(75, 192, 192, 1)',
+                'rgba(255, 99, 71, 1)',
             ],
             // fill: true,
             backgroundColor: [
-                'rgba(75, 192, 192, 1)',
+                'rgba(255, 99, 71, 1)',
             ],
             borderWidth: 1
         }]
@@ -27,5 +28,32 @@ const myChart = new Chart(ctx, {
         //     }
         // }
     }
+});
+const humidityChart = new Chart(humidity, {
+		type: 'line',
+		data: {
+				labels: Array(60).fill(''),
+				datasets: [{
+						label: 'Humidity',
+						data: Array(60).fill(0).map(() => Math.random() * 60),
+						borderColor: [
+								'rgba(75, 192, 192, 1)',
+						],
+						// fill: true,
+						backgroundColor: [
+								'rgba(75, 192, 192, 1)',
+						],
+						borderWidth: 1
+				}]
+		},
+		options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				// scales: {
+				//     y: {
+				//         beginAtZero: false
+				//     }
+				// }
+		}
 });
 </script>

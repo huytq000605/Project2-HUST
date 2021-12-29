@@ -5,8 +5,20 @@
   </head>
   <body>
     <%- include('header') %>
-    <div class="container" style="height:300px">
-      <canvas id="temperature_chart"></canvas>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="container" style="height:400px">
+            <canvas id="temperature_chart"></canvas>
+          </div>
+        </div>
+        <div class="col">
+          <div class="container" style="height:400px">
+            <canvas id="humidity_chart"></canvas>
+          </div>
+        </div>
+      
+      </div>
     </div>
   </body>
   <%- include('boostrap_script') %>

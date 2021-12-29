@@ -1,6 +1,5 @@
 import express from 'express';
 import mqtt from './mqtt.js';
-import mysql from 'mysql';
 import client from 'knex';
 
 const app = express()
