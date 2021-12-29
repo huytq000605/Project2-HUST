@@ -11,7 +11,6 @@ mqttClient.on('connect', () => {
 		} else {
 			console.log("Subscribed to topic " + topic)
 		}
-		mqttClient.publish(topic, 'Hello mqtt')
 	})
 })
 
