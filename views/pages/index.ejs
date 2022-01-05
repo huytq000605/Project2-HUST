@@ -7,18 +7,29 @@
     <%- include('header') %>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <div class="container" style="height:400px">
-            <canvas id="temperature_chart"></canvas>
-          </div>
+        <div class="container" style="height:400px">
+          <canvas id="temperature_chart"></canvas>
         </div>
-        <div class="col">
-          <div class="container" style="height:400px">
-            <canvas id="humidity_chart"></canvas>
-          </div>
-        </div>
-      
       </div>
+
+      <div class="container row-buffer">
+        <div class="row">
+          <div class="direction"></div>
+          <button class="btn mx-3 direction btn-secondary">UP</button>
+          <div class="direction"></div>
+        </div>
+        <div class="row row-buffer">
+          <button class="btn direction btn-secondary">LEFT</button>
+          <button class="btn mx-3 direction btn-danger rounded-circle">STOP</button>
+          <button class="btn direction btn-secondary">RIGHT</button>
+        </div>
+        <div class="row row-buffer">
+          <div class="direction"></div>
+          <button class="btn mx-3 direction btn-secondary">DOWN</button>
+          <div class="direction"></div>
+        </div>
+      </div>
+
     </div>
   </body>
   <%- include('boostrap_script') %>
