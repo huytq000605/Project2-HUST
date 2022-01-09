@@ -1,7 +1,7 @@
 import mqtt from 'mqtt'
 import { knex } from './index.js'
-const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
-const topic = "doan2-hust"
+export const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
+export const topic = "doan2-hust"
 
 
 mqttClient.on('connect', () => {
@@ -35,4 +35,4 @@ mqttClient.on('message', (topic, message) => {
 	}
 })
 
-export default mqttClient
+//export default mqttClient
