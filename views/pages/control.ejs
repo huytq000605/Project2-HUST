@@ -10,4 +10,20 @@
 		horizontal_range_value = document.querySelector("#horizontal_range_value")
 		horizontal_range_value.innerHTML = horizontal_range.value
 	}
+
+	function up() {
+		fetch("http://localhost:3000/up", {method: "POST"})
+	}
+	function down() {
+		fetch("http://localhost:3000/down", {method: "POST"})
+	}
+	function left() {
+		fetch("http://localhost:3000/left", {method: "POST"})
+	}
+	function right() {
+		fetch("http://localhost:3000/right", {method: "POST"})
+	}
+	function stop() {
+		fetch("http://localhost:3000/stop", {method: "POST"})
+	}
 </script>

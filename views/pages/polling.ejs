@@ -1,14 +1,35 @@
 <script>
-  const polling = () => {
-    fetch("http://localhost:3000/polling", {method: "GET"}).then((response) => {
-      response.json().then(data => {
-        console.log(data)
-        setTimeout(polling, 5000)
-      }).catch(err => {
-        console.log(err)
-        setTimeout(polling, 5000)
-      })
-    })
+  let lightsData = []
+  const polling = async () => {
+    try {
+      const data = await (await fetch("http://localhost:3000/polling", {method: "GET"})).json()
+      const newLights = []
+      // const {lights, mode} = data
+      let lights = Array(20).fill(0).map(() => { return {id: Math.floor(Math.random() * 10), value: Math.random() * 10000}})
+
+      for(let light of lights) {
+        const {id, value} = light
+        // if(lightsData.length && lightsData[lightsData.length - 1][1] >= id) break
+        newLights.push([value, id])
+      }
+      for(let i = newLights.length - 1; i >= 0; i--) {
+        lightChart.data.datasets[0].data.push(newLights[i][0])
+        lightsData.push(newLights[i])
+      }
+      console.log(lightChart.data.datasets[0].data)
+      if(lightsData.length > 60) {
+        lightsData = lightsData.slice(lightsData.length - 60, lightsData.length)
+      }
+      while(lightChart.data.datasets[0].data.length > 60) {
+        lightChart.data.datasets[0].data.shift()
+      }
+			console.log(lightChart.data.datasets[0].data)
+      lightChart.update()
+    } catch(err) {
+      console.log(err)
+    } finally {
+      setTimeout(polling, 5000)
+    }
   }
   setTimeout(polling, 0)
 </script>
