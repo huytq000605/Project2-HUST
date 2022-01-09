@@ -24,6 +24,9 @@ export const knex = client({
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 
 app.get('/', (req, res) => {
 	res.render('pages/index')
