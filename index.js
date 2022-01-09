@@ -5,7 +5,7 @@ import client from 'knex';
 const app = express()
 const port = 3000
 
-const knex = client({
+export const knex = client({
   client: 'mysql',
   connection: {
     host : '127.0.0.1',

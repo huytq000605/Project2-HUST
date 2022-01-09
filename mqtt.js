@@ -1,4 +1,5 @@
 import mqtt from 'mqtt'
+import { knex } from './index'
 const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
 const topic = "doan2-hust"
 
@@ -15,8 +16,22 @@ mqttClient.on('connect', () => {
 })
 
 mqttClient.on('message', (topic, message) => {
-	console.log("Receving messages from topic " + topic + message)
+	console.log("Receving messages from topic " + topic + message);
 	// Todo: Handle logic here
+	if (topic === "doan2-hust") {
+		const receivedData = message.split("_");
+		const lux = receivedData[0];
+		const mode = receivedData[1];
+		knex('light').insert({value: lux})
+		.then(()=>{
+			console.log("Inserted to light table");
+		})
+		
+		knex('mode').insert({value: mode})
+		.then(()=>{
+			console.log("Inserted to light table");
+		})
+	}
 })
 
 export default mqttClient
