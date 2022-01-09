@@ -9,7 +9,6 @@ let up = function(knex) {
 
 let down = function(knex) {
 	return knex.schema.dropTable('light')
-  
 };
 
 export { up, down }
