@@ -3,6 +3,9 @@ import { knex } from './index.js'
 const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
 const topic = "doan2-hust"
 
+export const publish = (data) => {
+	mqttClient.publish(topic, data)
+}
 
 mqttClient.on('connect', () => {
 	console.log("Connecting to broker")
@@ -35,4 +38,4 @@ mqttClient.on('message', (topic, message) => {
 	}
 })
 
-export default mqttClient
+//export default mqttClient
