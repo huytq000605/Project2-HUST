@@ -13,6 +13,9 @@ const knex = client({
     user : 'root',
     password : 'secret',
     database : 'project2'
+  },
+  migrations: {
+    tableName: 'migrations'
   }
 })
 

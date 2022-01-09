@@ -7,3 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: project2
+    volumes:
+      - data:/var/lib/mysql
+volumes:
+  data:
