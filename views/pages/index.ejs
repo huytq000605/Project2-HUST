@@ -8,25 +8,44 @@
     <div class="container">
       <div class="row">
         <div class="container" style="height:400px">
-          <canvas id="temperature_chart"></canvas>
+          <canvas id="light"></canvas>
         </div>
       </div>
 
-      <div class="container row-buffer">
-        <div class="row">
-          <div class="direction"></div>
-          <button class="btn mx-3 direction btn-secondary">UP</button>
-          <div class="direction"></div>
+      <div class="container row-buffer row d-flex">
+        <div class="col">
+          <div class="row">
+            <div class="direction"></div>
+            <button class="btn mx-3 direction btn-secondary">UP</button>
+            <div class="direction"></div>
+          </div>
+          <div class="row row-buffer">
+            <button class="btn direction btn-secondary">LEFT</button>
+            <button class="btn mx-3 direction btn-danger rounded-circle">STOP</button>
+            <button class="btn direction btn-secondary">RIGHT</button>
+          </div>
+          <div class="row row-buffer">
+            <div class="direction"></div>
+            <button class="btn mx-3 direction btn-secondary">DOWN</button>
+            <div class="direction"></div>
+          </div>
         </div>
-        <div class="row row-buffer">
-          <button class="btn direction btn-secondary">LEFT</button>
-          <button class="btn mx-3 direction btn-danger rounded-circle">STOP</button>
-          <button class="btn direction btn-secondary">RIGHT</button>
-        </div>
-        <div class="row row-buffer">
-          <div class="direction"></div>
-          <button class="btn mx-3 direction btn-secondary">DOWN</button>
-          <div class="direction"></div>
+        <div class="col">
+          <div class="row">
+            <div style="width: 100px">
+              <label for="vertical_range" class="form-label">Vertical</label>
+            </div>
+            <input type="range" class="form-range slider" id="vertical_range" min="0" max="180" step="1" onchange="rangevalue.value=value">
+            <output id="rangevalue">50</output>
+
+          </div>
+          <div class="row">
+            <div style="width: 100px">
+              <label for="horizontal_range" class="form-label">Horizontal</label>
+            </div>
+            <input type="range" class="form-range slider" id="horizontal_range" min="0" max="180" step="1">
+            <output id="rangevalue">50</output>
+          </div>
         </div>
       </div>
 
