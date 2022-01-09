@@ -37,7 +37,7 @@ app.get("/polling", async (req, res) => {
     .table("light")
     .limit(100)
     .orderBy("id", "desc");
-  const mode = await knex.select.table("mode").limit(1).orderBy("id", "desc");
+  const mode = await knex("mode").select("*").limit(1).orderBy("id", "desc");
   return res.json({ lights: lights, mode: mode });
 });
 

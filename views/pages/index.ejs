@@ -18,23 +18,33 @@
         <div class="col">
           <div class="row">
             <div class="direction"></div>
-            <button class="btn mx-3 direction btn-secondary">UP</button>
+            <button class="btn mx-3 direction btn-secondary">
+              <i class="bi bi-arrow-up-circle"></i>
+            </button>
             <div class="direction"></div>
           </div>
           <div class="row row-buffer">
-            <button class="btn direction btn-secondary">LEFT</button>
-            <button class="btn mx-3 direction btn-danger rounded-circle">STOP</button>
-            <button class="btn direction btn-secondary">RIGHT</button>
+            <button class="btn direction btn-secondary">
+              <i class="bi bi-arrow-left-circle"></i>
+            </button>
+            <button class="btn mx-3 direction btn-danger rounded-circle">
+              <i class="bi bi-stop-circle"></i>
+            </button>
+            <button class="btn direction btn-secondary">
+              <i class="bi bi-arrow-right-circle"></i>
+            </button>
           </div>
           <div class="row row-buffer">
             <div class="direction"></div>
-            <button class="btn mx-3 direction btn-secondary">DOWN</button>
+            <button class="btn mx-3 direction btn-secondary">
+              <i class="bi bi-arrow-down-circle"></i>
+            </button>
             <div class="direction"></div>
           </div>
         </div>
         <div class="col">
           <div class="d-flex" style="height: 140px">
-            <div class="col-10">
+            <div class="col-9">
               <div class="row">
                 <div style="width: 100px">
                   <label for="vertical_range" class="form-label">Vertical</label>
@@ -57,13 +67,16 @@
               </div>
 
             </div>
-            <button style="height:50px; margin-top:45px" class="col-2 btn btn-primary">Send</button>
+            <button style="height:50px" class="col-3 btn btn-primary mt-5">Send</button>
           </div>
-          <div class="font-weight-normal">
-            Current mode:
-          </div>
-          <div class="font-weight-normal row-buffer">
-            Current light intensity:
+          <div style="width:180px">
+            <div class="font-weight-normal">
+              Current mode:
+            </div>
+            <div class="font-weight-normal row-buffer">
+              Current light intensity:
+            </div>
+
           </div>
           </div>
       </div>
