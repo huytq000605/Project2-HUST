@@ -32,12 +32,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/polling", async (req, res) => {
-  const lights = await knex("light")
-      .select("*")
-      .limit(100)
-      .orderBy("id", "desc");
-  const mode = await knex("mode").select("*").limit(1).orderBy("id", "desc");
-  return res.json({ lights: lights, mode: mode });
+  // const lights = await knex("light")
+  //     .select("*")
+  //     .limit(100)
+  //     .orderBy("id", "desc");
+  // const mode = await knex("mode").select("*").limit(1).orderBy("id", "desc");
+  // return res.json({ lights: lights, mode: mode });
+  return res.json({})
 });
 
 app.post("/up", (req, res) => {
