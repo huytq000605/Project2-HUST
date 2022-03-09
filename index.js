@@ -59,11 +59,6 @@ app.post("/stop", (req, res) => {
   mqttClient.publish(receiveTopic, "0");
 });
 
-// app.post("/angle", (req, res) => {
-//   const { vertical, horizontal } = req.body;
-//   mqttClient.publish(receiveTopic, "3_" + vertical + "_" + horizontal);
-// });
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
