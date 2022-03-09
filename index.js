@@ -1,5 +1,5 @@
 import express from "express";
-import { mqttClient, topic } from "./mqtt.js";
+import { mqttClient, receiveTopic, sendTopic } from "./mqtt.js";
 import client from "knex";
 
 const app = express();
@@ -40,29 +40,29 @@ app.get("/polling", async (req, res) => {
 });
 
 app.post("/up", (req, res) => {
-  mqttClient.publish(topic, "2_up");
+  mqttClient.publish(sendTopic, "1");
 });
 
 app.post("/down", (req, res) => {
-  mqttClient.publish(topic, "2_down");
+  mqttClient.publish(sendTopic, "2");
 });
 
 app.post("/left", (req, res) => {
-  mqttClient.publish(topic, "2_left");
+  mqttClient.publish(sendTopic, "3");
 });
 
 app.post("/right", (req, res) => {
-  mqttClient.publish(topic, "2_right");
+  mqttClient.publish(sendTopic, "4");
 });
 
 app.post("/stop", (req, res) => {
-  mqttClient.publish(topic, "2_stop");
+  mqttClient.publish(receiveTopic, "0");
 });
 
-app.post("/angle", (req, res) => {
-  const { vertical, horizontal } = req.body;
-  mqttClient.publish(topic, "3_" + vertical + "_" + horizontal);
-});
+// app.post("/angle", (req, res) => {
+//   const { vertical, horizontal } = req.body;
+//   mqttClient.publish(receiveTopic, "3_" + vertical + "_" + horizontal);
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
