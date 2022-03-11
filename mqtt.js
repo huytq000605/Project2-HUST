@@ -32,7 +32,7 @@ mqttClient.on('message', (topic, message) => {
 		const mode = Number(receivedData[1])
 		knex('light').insert({value: lux})
 		.then(()=>{
-			console.log("Inserted to light table: ", light);
+			console.log("Inserted to light table: ", lux);
 		})
 		
 		knex('mode').insert({value: mode})
