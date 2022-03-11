@@ -62,10 +62,24 @@ app.post("/right", (req, res) => {
 });
 
 app.post("/stop", (req, res) => {
-  mqttClient.publish(receiveTopic, "0");
+  mqttClient.publish(sendTopic, "0");
   return res.json({ result: "OK" });
 });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+// export const knex = client({
+//   client: "mysql",
+//   connection: {
+//     host: "localhost",
+//     port: 3306,
+//     user: "tan",
+//     password: "Trannhattan14102000@",
+//     database: "doan2",
+//   },
+//   migrations: {
+//     tableName: "migrations",
+//   },
+// });
