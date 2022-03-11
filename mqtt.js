@@ -20,6 +20,7 @@ mqttClient.on('connect', () => {
 			console.log("Subscribed to topic " + sendTopic)
 		}
 	})
+	mqttClient.publish(receiveTopic, "3_5");
 })
 
 mqttClient.on('message', (topic, message) => {

@@ -37,28 +37,33 @@ app.get("/polling", async (req, res) => {
     .table("light")
     .limit(100)
     .orderBy("id", "desc");
-  const mode = await knex.select.table("mode").limit(1).orderBy("id", "desc");
+  const mode = await knex.select().table("mode").limit(1).orderBy("id", "desc");
   return res.json({ lights: lights, mode: mode });
 });
 
 app.post("/up", (req, res) => {
   mqttClient.publish(sendTopic, "1");
+  return res.json({ result: "OK" });
 });
 
 app.post("/down", (req, res) => {
   mqttClient.publish(sendTopic, "2");
+  return res.json({ result: "OK" });
 });
 
 app.post("/left", (req, res) => {
   mqttClient.publish(sendTopic, "3");
+  return res.json({ result: "OK" });
 });
 
 app.post("/right", (req, res) => {
   mqttClient.publish(sendTopic, "4");
+  return res.json({ result: "OK" });
 });
 
 app.post("/stop", (req, res) => {
   mqttClient.publish(receiveTopic, "0");
+  return res.json({ result: "OK" });
 });
 
 app.listen(port, () => {
