@@ -20,17 +20,17 @@ mqttClient.on('connect', () => {
 			console.log("Subscribed to topic " + sendTopic)
 		}
 	})
-	mqttClient.publish(receiveTopic, "3_5");
+	//mqttClient.publish(receiveTopic, "300005");
 })
 
 mqttClient.on('message', (topic, message) => {
-	console.log(`Receving messages from topic ${topic} ${message}`);
+	console.log("Receiving messages from topic " + topic + message);
 	message = message.toString()
 	// Todo: Handle logic here
 	if (topic === receiveTopic) {
-		const receivedData = message.split("_");
-		const lux = Number(receivedData[0])
-		const mode = Number(receivedData[1])
+		const receivedData = parseInt(message);
+		const lux = Math.floor(receivedData / 100);
+		const mode = receivedData % 100;
 		knex('light').insert({value: lux})
 		.then(()=>{
 			console.log("Inserted to light table: ", lux);
