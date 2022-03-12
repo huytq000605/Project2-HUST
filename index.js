@@ -1,6 +1,7 @@
 import express from "express";
 import { mqttClient, receiveTopic, sendTopic } from "./mqtt.js";
 import client from "knex";
+import cors from "cors"
 
 const app = express();
 const port = 3000;
@@ -26,6 +27,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.render("pages/index");
@@ -62,12 +64,12 @@ app.post("/right", (req, res) => {
 });
 
 app.post("/stop", (req, res) => {
-  mqttClient.publish(sendTopic, "0");
+  mqttClient.publish(sendTopic, "5");
   return res.json({ result: "OK" });
 });
 
 app.post("/out", (req, res) => {
-  mqttClient.publish(sendTopic, "5");
+  mqttClient.publish(sendTopic, "0");
   return res.json({ result: "OK" });
 });
 
