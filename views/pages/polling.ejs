@@ -2,13 +2,24 @@
   let lightsData = []
   const modeChange = (mode) => {
     let modeElement = document.querySelector("#mode")
-    let nextMode = mode
-    if(nextMode === "Manual") {
+    let nextMode = 0
+    switch(mode) {
+      case 0:
+        nextMode = "Auto"
+        break
+      case 1:
+        nextMode = "Web Control"
+        break
+      case 2:
+        nextMode = "Hand Control"
+        break
+    }
+    if(nextMode === "Hand Control") {
       let buttons = document.querySelectorAll(".btn")
       for(let button of buttons) {
         button.classList.add("disabled")
       }
-    } else if(modeElement.innerHTML === "Manual") {
+    } else if(modeElement.innerHTML === "Hand Control") {
       let buttons = document.querySelectorAll(".btn")
       for(let button of buttons) {
         button.classList.remove("disabled")
@@ -21,7 +32,7 @@
       const data = await (await fetch("http://localhost:3000/polling", {method: "GET"})).json()
       const newLights = []
       const {lights = [], mode = "Auto"} = data
-      modeChange(mode)
+      modeChange(mode[0].value)
 
       for(let light of lights) {
         const {id, value} = light
