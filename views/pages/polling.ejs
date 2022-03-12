@@ -20,11 +20,13 @@
       let buttons = document.querySelectorAll(".btn")
       for(let button of buttons) {
         button.classList.add("disabled")
+        button.setAttribute('disabled', true)
       }
     } else if(modeElement.innerHTML === "Hand Control") {
       let buttons = document.querySelectorAll(".btn")
       for(let button of buttons) {
         button.classList.remove("disabled")
+        button.setAttribute('disabled', false)
       }
     }
     modeElement.innerHTML = nextMode
