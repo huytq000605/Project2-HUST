@@ -1,28 +1,33 @@
 import mqtt from 'mqtt'
 import { knex } from './index.js'
-const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
-const topic = "doan2-hust"
-
-export const publish = (data) => {
-	mqttClient.publish(topic, data)
-}
+export const mqttClient = mqtt.connect('mqtt://test.mosquitto.org')
+export const receiveTopic = "doan2-hust/device";
+export const sendTopic = "doan2-hust/web";
 
 mqttClient.on('connect', () => {
 	console.log("Connecting to broker")
-	mqttClient.subscribe(topic, (err) => {
+	mqttClient.subscribe(receiveTopic, (err) => {
 		if(err) {
-			throw Error("Cannot subscribe the topic " + topic)
+			throw Error("Cannot subscribe the topic " + receiveTopic)
 		} else {
-			console.log("Subscribed to topic " + topic)
+			console.log("Subscribed to topic " + receiveTopic)
+		}
+	});
+	mqttClient.subscribe(sendTopic, (err) => {
+		if(err) {
+			throw Error("Cannot subscribe the topic " + sendTopic)
+		} else {
+			console.log("Subscribed to topic " + sendTopic)
 		}
 	})
+	mqttClient.publish(receiveTopic, "3_5");
 })
 
 mqttClient.on('message', (topic, message) => {
 	console.log(`Receving messages from topic ${topic} ${message}`);
 	message = message.toString()
 	// Todo: Handle logic here
-	if (topic === "doan2-hust") {
+	if (topic === receiveTopic) {
 		const receivedData = message.split("_");
 		const lux = Number(receivedData[0])
 		const mode = Number(receivedData[1])

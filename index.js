@@ -1,5 +1,5 @@
 import express from "express";
-import { publish } from "./mqtt.js";
+import { mqttClient, receiveTopic, sendTopic } from "./mqtt.js";
 import client from "knex";
 
 const app = express();
@@ -8,11 +8,11 @@ const port = 3000;
 export const knex = client({
   client: "mysql",
   connection: {
-    host: "127.0.0.1",
+    host: "localhost",
     port: 3306,
-    user: "root",
-    password: "secret",
-    database: "project2",
+    user: "tan",
+    password: "Trannhattan14102000@",
+    database: "doan2",
   },
   migrations: {
     tableName: "migrations",
@@ -32,39 +32,59 @@ app.get("/", (req, res) => {
 });
 
 app.get("/polling", async (req, res) => {
-  const lights = await knex("light")
-      .select("*")
-      .limit(100)
-      .orderBy("id", "desc");
-  const mode = await knex("mode").select("*").limit(1).orderBy("id", "desc");
+  const lights = await knex
+    .select()
+    .table("light")
+    .limit(100)
+    .orderBy("id", "desc");
+  const mode = await knex.select().table("mode").limit(1).orderBy("id", "desc");
   return res.json({ lights: lights, mode: mode });
 });
 
 app.post("/up", (req, res) => {
-  publish("2_up");
+  mqttClient.publish(sendTopic, "1");
+  return res.json({ result: "OK" });
 });
 
 app.post("/down", (req, res) => {
-  publish("2_down");
+  mqttClient.publish(sendTopic, "2");
+  return res.json({ result: "OK" });
 });
 
 app.post("/left", (req, res) => {
-  publish("2_left");
+  mqttClient.publish(sendTopic, "3");
+  return res.json({ result: "OK" });
 });
 
 app.post("/right", (req, res) => {
-  publish("2_right");
+  mqttClient.publish(sendTopic, "4");
+  return res.json({ result: "OK" });
 });
 
 app.post("/stop", (req, res) => {
-  publish("2_stop");
+  mqttClient.publish(sendTopic, "0");
+  return res.json({ result: "OK" });
 });
 
-app.post("/angle", (req, res) => {
-  const { vertical, horizontal } = req.body;
-  publish("3_" + vertical + "_" + horizontal);
+app.post("/out", (req, res) => {
+  mqttClient.publish(sendTopic, "5");
+  return res.json({ result: "OK" });
 });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+// export const knex = client({
+//   client: "mysql",
+//   connection: {
+//     host: "localhost",
+//     port: 3306,
+//     user: "tan",
+//     password: "Trannhattan14102000@",
+//     database: "doan2",
+//   },
+//   migrations: {
+//     tableName: "migrations",
+//   },
+// });
