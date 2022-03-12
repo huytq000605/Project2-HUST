@@ -8,11 +8,11 @@ const port = 3000;
 export const knex = client({
   client: "mysql",
   connection: {
-    host: "127.0.0.1",
+    host: "localhost",
     port: 3306,
-    user: "root",
-    password: "secret",
-    database: "project2",
+    user: "tan",
+    password: "Trannhattan14102000@",
+    database: "doan2",
   },
   migrations: {
     tableName: "migrations",
@@ -63,6 +63,11 @@ app.post("/right", (req, res) => {
 
 app.post("/stop", (req, res) => {
   mqttClient.publish(sendTopic, "0");
+  return res.json({ result: "OK" });
+});
+
+app.post("/out", (req, res) => {
+  mqttClient.publish(sendTopic, "5");
   return res.json({ result: "OK" });
 });
 

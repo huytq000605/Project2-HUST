@@ -26,6 +26,9 @@
 	function stop() {
 		fetch("http://localhost:3000/stop", {method: "POST"})
 	}
+    function out() {
+        fetch("http://localhost:3000/out", {method: "POST"})
+    }
 	function sendAngle() {
 		const vertical = document.querySelector("#vertical_range").value
 		const horizontal = document.querySelector("#horizontal_range").value
