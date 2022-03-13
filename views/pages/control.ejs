@@ -10,28 +10,28 @@
 		horizontal_range_value = document.querySelector("#horizontal_range_value")
 		horizontal_range_value.innerHTML = horizontal_range.value
 	}
-
+    const api= '<%= process.env.API %>';
 	function up() {
-		fetch("http://localhost:3000/up", {method: "POST"})
+		fetch(`${api}/up`, {method: "POST"})
 	}
 	function down() {
-		fetch("http://localhost:3000/down", {method: "POST"})
+		fetch(`${api}/down`, {method: "POST"})
 	}
 	function left() {
-		fetch("http://localhost:3000/left", {method: "POST"})
+		fetch(`${api}/left`, {method: "POST"})
 	}
 	function right() {
-		fetch("http://localhost:3000/right", {method: "POST"})
+		fetch(`${api}/right`, {method: "POST"})
 	}
 	function stop() {
-		fetch("http://localhost:3000/stop", {method: "POST"})
+		fetch(`${api}/stop`, {method: "POST"})
 	}
     function out() {
-        fetch("http://localhost:3000/out", {method: "POST"})
+        fetch(`${api}/out`, {method: "POST"})
     }
 	function sendAngle() {
 		const vertical = document.querySelector("#vertical_range").value
 		const horizontal = document.querySelector("#horizontal_range").value
-		fetch("http://localhost:3000/angle", {method: "POST", body: JSON.stringify({vertical, horizontal})})
+		fetch(`${api}/angle`, {method: "POST", body: JSON.stringify({vertical, horizontal})})
 	}
 </script>

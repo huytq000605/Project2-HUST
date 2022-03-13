@@ -33,7 +33,8 @@
   }
   const polling = async () => {
     try {
-      const data = await (await fetch("http://localhost:3000/polling", {method: "GET"})).json()
+      const api= '<%= process.env.API %>';
+      const data = await (await fetch(`${api}/polling`, {method: "GET"})).json()
       const newLights = []
       const {lights = [], mode = "Auto"} = data
       modeChange(mode[0].value)

@@ -24,7 +24,7 @@ mqttClient.on('connect', () => {
 })
 
 mqttClient.on('message', (topic, message) => {
-	console.log("Receiving messages from topic " + topic + message);
+	console.log("Receiving messages from topic " + topic + ": " + message);
 	message = message.toString()
 	// Todo: Handle logic here
 	if (topic === receiveTopic) {
